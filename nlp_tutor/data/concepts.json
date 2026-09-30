@@ -1,0 +1,126 @@
+{
+  "token": {
+    "answer": "Un token est une unité de texte manipulée par un modèle de langage. Il peut être un mot, une partie de mot ou un signe. Exemple : un mot peut être découpé en plusieurs tokens selon le tokenizer. À retenir : le modèle voit des tokens, pas directement des mots.",
+    "keywords": ["unité", "texte", "tokenizer", "mot"]
+  },
+
+  "tokenizer": {
+    "answer": "Un tokenizer transforme un texte en tokens puis en identifiants numériques, et permet aussi le décodage inverse. Exemple : une phrase devient une liste d'entiers. À retenir : le tokenizer relie le texte humain aux entrées numériques du modèle.",
+    "keywords": ["texte", "tokens", "identifiants", "décodage"]
+  },
+
+  "vocabulaire": {
+    "answer": "Le vocabulaire est l'ensemble des tokens connus du tokenizer. Chaque token possède un identifiant. À retenir : le vocabulaire définit les unités élémentaires disponibles pour encoder le texte.",
+    "keywords": ["tokens", "identifiant", "tokenizer", "ensemble"]
+  },
+
+  "embedding": {
+    "answer": "Un embedding est un vecteur numérique représentant un token dans un espace continu. Il fournit au réseau une représentation exploitable du token. À retenir : l'embedding transforme un identifiant discret en vecteur.",
+    "keywords": ["vecteur", "token", "représentation", "numérique"]
+  },
+
+  "modèle de langage": {
+    "answer": "Un modèle de langage apprend des régularités dans le texte afin d'estimer des probabilités sur des tokens. Un modèle causal prédit le token suivant à partir du contexte précédent. À retenir : la génération procède token après token.",
+    "keywords": ["probabilité", "token suivant", "contexte", "texte"]
+  },
+
+  "logits": {
+    "answer": "Les logits sont les scores bruts produits par le modèle avant la conversion en probabilités. La softmax transforme ensuite ces scores en distribution. À retenir : un logit n'est pas encore une probabilité.",
+    "keywords": ["scores", "softmax", "probabilités", "distribution"]
+  },
+
+  "softmax": {
+    "answer": "La softmax transforme un vecteur de scores en probabilités positives dont la somme vaut 1. À retenir : elle convertit les logits en distribution probabiliste.",
+    "keywords": ["probabilités", "somme", "logits", "distribution"]
+  },
+
+  "température": {
+    "answer": "La température modifie la distribution utilisée pendant l'échantillonnage. Une température basse la concentre ; une température plus élevée augmente la diversité. À retenir : elle contrôle le caractère plus ou moins aléatoire de la génération.",
+    "keywords": ["distribution", "diversité", "échantillonnage", "probabilité"]
+  },
+
+  "top-k": {
+    "answer": "Le top-k limite l'échantillonnage aux k tokens les plus probables. Exemple : top-k=20 ne conserve que 20 candidats. À retenir : top-k fixe le nombre maximal de candidats.",
+    "keywords": ["k", "tokens", "probabilités", "échantillonnage"]
+  },
+
+  "top-p": {
+    "answer": "Le top-p conserve le plus petit ensemble de tokens dont la probabilité cumulée atteint un seuil p. À retenir : le nombre de candidats s'adapte à la distribution.",
+    "keywords": ["probabilité cumulée", "seuil", "tokens", "distribution"]
+  },
+
+  "attention": {
+    "answer": "L'attention permet de pondérer l'importance de différentes positions du contexte pour construire une représentation. À retenir : elle aide le modèle à sélectionner les informations pertinentes.",
+    "keywords": ["contexte", "positions", "importance", "pondérer"]
+  },
+
+  "self-attention": {
+    "answer": "La self-attention applique l'attention entre les éléments d'une même séquence. Chaque position tient compte d'autres positions autorisées. À retenir : elle met en relation les tokens d'une même séquence.",
+    "keywords": ["séquence", "attention", "positions", "tokens"]
+  },
+
+  "query key value": {
+    "answer": "Dans l'attention, Query exprime ce qu'une position recherche, Key sert à calculer la compatibilité et Value contient l'information agrégée. À retenir : Q et K déterminent les poids, V fournit le contenu.",
+    "keywords": ["query", "key", "value", "attention"]
+  },
+
+  "Transformer": {
+    "answer": "Un Transformer est une architecture de réseau neuronal fondée principalement sur l'attention et des couches feed-forward. À retenir : l'attention est un composant central du Transformer.",
+    "keywords": ["attention", "architecture", "séquence", "feed-forward"]
+  },
+
+  "encodage positionnel": {
+    "answer": "L'encodage positionnel apporte au Transformer une information sur l'ordre ou la position des tokens. À retenir : il permet de distinguer la place des tokens dans la séquence.",
+    "keywords": ["position", "ordre", "tokens", "Transformer"]
+  },
+
+  "masque causal": {
+    "answer": "Un masque causal empêche une position de consulter les tokens futurs. Il préserve ainsi la logique de prédiction autoregressive. À retenir : chaque prédiction ne dépend que du passé autorisé.",
+    "keywords": ["futur", "attention", "prédiction", "token"]
+  },
+
+  "fenêtre de contexte": {
+    "answer": "La fenêtre de contexte est la quantité maximale de tokens que le modèle peut traiter dans le contexte considéré. À retenir : elle limite la quantité de texte simultanément accessible.",
+    "keywords": ["tokens", "limite", "contexte", "mémoire"]
+  },
+
+  "pré-entraînement": {
+    "answer": "Le pré-entraînement apprend des régularités générales à partir d'un grand corpus, souvent avec un objectif auto-supervisé. À retenir : il construit les capacités générales du modèle.",
+    "keywords": ["corpus", "général", "prédiction", "apprentissage"]
+  },
+
+  "fine-tuning": {
+    "answer": "Le fine-tuning poursuit l'entraînement d'un modèle pré-entraîné sur des données ciblées pour l'adapter à une tâche ou un domaine. À retenir : il spécialise un modèle existant.",
+    "keywords": ["adaptation", "pré-entraîné", "données", "spécialiser"]
+  },
+
+  "instruction tuning": {
+    "answer": "L'instruction tuning est un fine-tuning sur des couples instruction-réponse afin d'améliorer le suivi de consignes. À retenir : il apprend le format instruction-réponse.",
+    "keywords": ["instructions", "réponses", "fine-tuning", "consignes"]
+  },
+
+  "LoRA": {
+    "answer": "LoRA gèle les principaux poids du modèle et ajoute de petites matrices entraînables de faible rang. À retenir : LoRA adapte un grand modèle avec peu de paramètres entraînables.",
+    "keywords": ["adaptateurs", "faible rang", "paramètres", "gèle"]
+  },
+
+  "QLoRA": {
+    "answer": "QLoRA combine un modèle de base quantifié, souvent en 4 bits, avec des adaptateurs LoRA entraînables. À retenir : QLoRA réduit fortement la mémoire nécessaire au fine-tuning.",
+    "keywords": ["4 bits", "LoRA", "quantification", "mémoire"]
+  },
+
+  "quantification": {
+    "answer": "La quantification représente certains poids avec une précision numérique réduite afin de diminuer la mémoire utilisée et parfois accélérer l'inférence. À retenir : elle échange de la précision numérique contre des économies de ressources.",
+    "keywords": ["précision", "mémoire", "poids", "bits"]
+  },
+
+  "surapprentissage": {
+    "answer": "Le surapprentissage apparaît lorsqu'un modèle s'adapte trop aux données d'entraînement et généralise moins bien à de nouvelles données. À retenir : il faut surveiller la validation pour contrôler la généralisation.",
+    "keywords": ["entraînement", "validation", "généraliser", "données"]
+  },
+
+  "train validation test": {
+    "answer": "Le train sert à ajuster les paramètres, la validation sert à guider les choix pendant le développement, et le test sert à l'évaluation finale indépendante. À retenir : train apprend, validation guide, test mesure.",
+    "keywords": ["entraînement", "validation", "test", "évaluation"]
+  }
+}

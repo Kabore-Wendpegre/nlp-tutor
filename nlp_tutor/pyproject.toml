@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "nlp-tutor"
+version = "0.1.0"
+description = "Assistant pédagogique francophone spécialisé en NLP et Transformers"
+readme = "README.md"
+
+requires-python = ">=3.10"
+
+dependencies = [
+    "torch",
+    "transformers",
+    "peft",
+    "accelerate",
+    "datasets",
+    "trl",
+    "numpy",
+    "pandas>=2.2.3,<3",
+    "rouge-score",
+    "gradio",
+]
+
+
+[project.optional-dependencies]
+
+# Dépendances nécessaires pour QLoRA sur le runtime GPU Colab.
+gpu = [
+    "bitsandbytes",
+]
+
+# Outils pratiques pour travailler localement.
+dev = [
+    "ipykernel",
+    "jupyter",
+]
+
+
+[tool.setuptools.packages.find]
+where = ["src"]
