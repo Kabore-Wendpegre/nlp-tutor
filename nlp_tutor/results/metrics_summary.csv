@@ -1,0 +1,3 @@
+Configuration,ROUGE-L moyen,Couverture mots-clés moyenne
+Baseline + prompting,0.13312116036651164,0.25
+Après QLoRA,1.0,0.8375

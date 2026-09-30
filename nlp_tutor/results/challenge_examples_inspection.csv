@@ -1,0 +1,28 @@
+id,question,baseline,qlora
+1,Pourquoi un même mot peut-il être découpé différemment selon le tokenizer ?,"Un même mot peut être découpé différemment selon le tokenizer parce que chaque tokenizer a ses propres règles pour séparer les mots. Cela peut sembler bizarre, mais c'est une chose que nous apprenons à apprendre avec le temps.
+
+Imaginez que vous avez un livre et que vous voulez lire chaque page. Si vous commencez à lire du haut vers le bas, vous pouvez lire la première page. Mais si vous commencez à lire du bas vers le haut, vous pouvez lire la dernière page. C'est pareil avec les mots. Un tokenizer peut décider de commencer à lire du haut vers le bas (ou du bas vers le haut) pour séparer les mots, donc il peut lire un mot différemment selon où il commence à lire.
+
+Par exemple, si vous avez le mot ""papier"" et que vous utilisez un tokenizer qui commence à lire du haut vers le bas, il pourrait décider de lire ""pap"" comme le premier mot et ""ier"" comme le deuxième mot. Mais si vous utilise","Un tokenizer transforme un texte en tokens puis en identifiants numériques, et deux mots peuvent être découpés différemment selon le tokenizer. À retenir : le tokenizer influence la représentation du texte dans le modèle."
+2,Quelle différence y a-t-il entre les logits et les probabilités finales ?,"Les logits et les probabilités finales sont deux concepts importants dans l'analyse de données et le traitement du langage naturel, notamment avec les modèles de langage comme les Transformer. Voici la différence clé :
+
+1. **Logits** : Les logits sont des valeurs numériques qui représentent la probabilité d'une certaine classe ou sortie pour un certain input. Ils sont calculés à partir des poids et biais du modèle. Par exemple, si vous avez un modèle de langue qui prédit une réponse à ""Bonjour"", les logits pour cette réponse seraient des nombres qui décrivent la probabilité qu'il s'agisse d'une réponse ""bonjour"" (ou une autre réponse).
+
+2. **Probabilités finales** : Les probabilités finales sont les valeurs que le modèle donne directement après avoir appliqué une fonction d'activation spécifique (comme la fonction sigmoid) aux logits. Ces valeurs sont des fractions qui représentent la probabilité que le modèle attribue à chaque classe. Par exemple, si",Les logits sont les scores bruts produits par le modèle avant la conversion en probabilités. La softmax transforme ensuite ces scores en distribution. À retenir : le logit n'est pas encore une probabilité.
+5,Pourquoi un Transformer a-t-il besoin d'informations de position ?,"Un Transformer a besoin d'informations de position pour optimiser la façon dont il traite les mots dans une phrase. Imagine que chaque mot est comme un point sur une carte. Un Transformer utilise ces informations de position pour suivre le chemin entre les mots, ce qui aide à comprendre la structure de la phrase.
+
+Par exemple, si vous avez une phrase comme ""Le chat noir est grand"", un Transformer pourrait utiliser l'information de position pour comprendre que ""le"" est avant ""chat"", ""est"" est après ""chat"", et ""grand"" suit ""chat"". Cela permet au Transformer de comprendre la structure de la phrase et de générer des phrases cohérentes.",Un Transformer utilise un encoder autoreductif où la position compte. À retenir : la position influence le score.
+9,Pourquoi QLoRA consomme-t-il moins de mémoire qu'un fine-tuning complet ?,"QLoRA (Quantized LoRA) consomme moins de mémoire car il utilise des quantifications pour réduire la taille des modèles. En remplaçant les paramètres flottants par des entiers quantifiés, QLoRA réduit considérablement la taille du modèle sans perdre beaucoup d'information. Cela permet à QLoRA de s'exécuter sur des appareils avec peu de mémoire, comme les smartphones ou les appareils IoT. Par exemple, un modèle QLoRA peut contenir seulement 10% de la taille d'un modèle fini complet, ce qui le rend très pratique pour l'implémentation sur des plateformes limitées en mémoire. À retenir : QLoRA réduit la taille du modèle en utilisant des quantifications, ce qui permet de l'exécuter efficacement sur des appareils avec peu de mémoire.","QLoRA combine un modèle de base quantifié, souvent en 4 bits, avec des adaptateurs LoRA entraînables. À retenir : QLoRA réduit fortement la mémoire nécessaire au fine-tuning."
+20,Explique le chemin complet allant d'une phrase entrée par l'utilisateur jusqu'au prochain token généré.,"Le chemin complet pour générer un prochain token est comme suit :
+
+1. **Entrée utilisateur** : L'utilisateur entre une phrase ou un texte.
+2. **Analyse du modèle** : Le modèle analyse la phrase entrée.
+3. **Recherche de mots** : Il cherche les mots dans son vocabulaire.
+4. **Choix du mot** : Il choisit un mot à partir de ces options.
+5. **Prédiction du prochain token** : Le modèle prédit le prochain token à générer.
+6. **Génération du prochain token** : Le modèle génère ce token.
+7. **Validation du token** : Le modèle vérifie que le token est valide.
+8. **Ajout du token** : Le modèle ajoute le token à la phrase générée.
+9. **Reprise du processus** : Le modèle reprend le processus pour générer le prochain token.
+
+C'est un processus continu qui se répète jusqu'à ce que le modèle soit satisfait ou qu'il atteigne un",Le tokenizer transforme une phrase en liste de tokens puisque le Transformer conserve only the token IDs. À retenir : chaque phrase ne passe pas directement au réseau.

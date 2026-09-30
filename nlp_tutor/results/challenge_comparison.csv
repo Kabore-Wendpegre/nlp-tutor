@@ -1,0 +1,130 @@
+id,question,baseline,qlora
+1,Pourquoi un même mot peut-il être découpé différemment selon le tokenizer ?,"Un même mot peut être découpé différemment selon le tokenizer parce que chaque tokenizer a ses propres règles pour séparer les mots. Cela peut sembler bizarre, mais c'est une chose que nous apprenons à apprendre avec le temps.
+
+Imaginez que vous avez un livre et que vous voulez lire chaque page. Si vous commencez à lire du haut vers le bas, vous pouvez lire la première page. Mais si vous commencez à lire du bas vers le haut, vous pouvez lire la dernière page. C'est pareil avec les mots. Un tokenizer peut décider de commencer à lire du haut vers le bas (ou du bas vers le haut) pour séparer les mots, donc il peut lire un mot différemment selon où il commence à lire.
+
+Par exemple, si vous avez le mot ""papier"" et que vous utilisez un tokenizer qui commence à lire du haut vers le bas, il pourrait décider de lire ""pap"" comme le premier mot et ""ier"" comme le deuxième mot. Mais si vous utilise","Un tokenizer transforme un texte en tokens puis en identifiants numériques, et deux mots peuvent être découpés différemment selon le tokenizer. À retenir : le tokenizer influence la représentation du texte dans le modèle."
+2,Quelle différence y a-t-il entre les logits et les probabilités finales ?,"Les logits et les probabilités finales sont deux concepts importants dans l'analyse de données et le traitement du langage naturel, notamment avec les modèles de langage comme les Transformer. Voici la différence clé :
+
+1. **Logits** : Les logits sont des valeurs numériques qui représentent la probabilité d'une certaine classe ou sortie pour un certain input. Ils sont calculés à partir des poids et biais du modèle. Par exemple, si vous avez un modèle de langue qui prédit une réponse à ""Bonjour"", les logits pour cette réponse seraient des nombres qui décrivent la probabilité qu'il s'agisse d'une réponse ""bonjour"" (ou une autre réponse).
+
+2. **Probabilités finales** : Les probabilités finales sont les valeurs que le modèle donne directement après avoir appliqué une fonction d'activation spécifique (comme la fonction sigmoid) aux logits. Ces valeurs sont des fractions qui représentent la probabilité que le modèle attribue à chaque classe. Par exemple, si",Les logits sont les scores bruts produits par le modèle avant la conversion en probabilités. La softmax transforme ensuite ces scores en distribution. À retenir : le logit n'est pas encore une probabilité.
+3,Pourquoi une température très élevée peut-elle dégrader une réponse ?,"Une température très élevée peut dégrader une réponse car elle peut perturber les fonctions du cerveau. Les neurones nécessitent une certaine température pour fonctionner efficacement. Une température trop élevée peut causer des dommages à ces neurones, ce qui peut entraîner une diminution de la capacité de penser ou de réagir rapidement. Par exemple, dans un environnement chaud, on peut ressentir plus de fatigue et de confusion mentale.",La température modifie la distribution utilisée pendant l'échantillonnage. Une température basse la concentre ; une température plus élevée augmente la diversité. À retenir : elle contrôle le caractère plus ou moins aléatoire de la génération.
+4,Dans quel cas top-p est-il préférable à top-k ?,"Top-p (ou top-k) sont deux méthodes pour filtrer les tokens dans un modèle de langage ou un modèle de langage de parole. Ils sont utilisés pour sélectionner les tokens les plus probables dans une distribution de probabilités.
+
+**Top-p** (probabilité de p) :
+- **Préférence** : Top-p est préféré lorsque vous voulez éviter les tokens qui ont une probabilité très faible.
+- **Explication** : Cela signifie que nous choisissons les tokens qui ont la plus grande probabilité, mais nous ne les choisissons que jusqu'à ce qu'elles atteignent une certaine probabilité minimale. Par exemple, si p = 0.9, nous choisissons les tokens qui ont une probabilité supérieure à 90%.
+- **Exemple** : Si vous avez une distribution de probabilités où 80% des tokens ont une probabilité inférieure à 0.1, top-p pourrait choisir ces 80% de tokens",Le top-p conserve le plus petit ensemble de tokens dont la probabilité cumulée atteint un seuil p. À retenir : le nombre de candidats s'adapte à la distribution.
+5,Pourquoi un Transformer a-t-il besoin d'informations de position ?,"Un Transformer a besoin d'informations de position pour optimiser la façon dont il traite les mots dans une phrase. Imagine que chaque mot est comme un point sur une carte. Un Transformer utilise ces informations de position pour suivre le chemin entre les mots, ce qui aide à comprendre la structure de la phrase.
+
+Par exemple, si vous avez une phrase comme ""Le chat noir est grand"", un Transformer pourrait utiliser l'information de position pour comprendre que ""le"" est avant ""chat"", ""est"" est après ""chat"", et ""grand"" suit ""chat"". Cela permet au Transformer de comprendre la structure de la phrase et de générer des phrases cohérentes.",Un Transformer utilise un encoder autoreductif où la position compte. À retenir : la position influence le score.
+6,Que se passerait-il sans masque causal pendant l'entraînement d'un modèle autoregressif ?,"Sans masque causal pendant l'entraînement d'un modèle autoregressif, les erreurs potentiellement causées sont nombreuses et peuvent être très graves. Voici comment cela pourrait se produire :
+
+1. **Défaut de prévision** : Le modèle ne pourra pas anticiper correctement les événements futurs en fonction des informations passées. Cela peut conduire à des prédictions erronées ou incohérentes.
+
+2. **Désynchronisation** : Les états du modèle peuvent diverger de la réalité, ce qui peut entraîner une mauvaise performance globale du modèle.
+
+3. **Incohérence dans le temps** : Les prédictions peuvent ne pas être cohérentes avec les événements précédents, ce qui peut rendre difficile la compréhension du modèle.
+
+4. **Perte de précision** : Les erreurs peuvent s'accroître au fil du temps, rendant le modèle incapable de fournir des prédictions fiables.
+
+5. **",Un masque causal empêche le modèle de prédire une token sans consignes autorisant. À retenir : il interdit de consulter la future.
+7,"Pourquoi Q, K et V ont-ils des rôles différents dans l'attention ?","Les Q, K et V sont des matrices d'attention utilisées dans les modèles de langage comme le Transformer. Ils jouent des rôles différents pour améliorer l'attention et la compréhension.
+
+1. **Q (Query)**: C'est la première matrice d'attention. Elle transforme les tokens de l'entrée en vecteurs d'attention. Ces vecteurs représentent les informations importantes à considérer pour chaque token.
+
+2. **K (Key)**: Cette matrice est utilisée pour calculer une attention plus fine. Elle ajoute des informations supplémentaires aux vecteurs d'attention produits par Q. Cela permet de prendre en compte des contextes plus complexes.
+
+3. **V (Value)**: Cette matrice produit les valeurs finales de l'attention. Elle contient les informations importantes à transmettre à chaque token final.
+
+En résumé, Q capture les principaux éléments, K ajoute des détails supplémentaires et V transmet les informations clés. Ensemble, ils permettent","La quantité Q est le poids de la position, K est le poids du contexte et V relie les deux. À retenir : Q contient les scores, K contrôle la mémoire et V construit la vecteur."
+8,Quelle différence fais-tu entre self-attention et attention en général ?,"La différence entre la self-attention et l'attention en général réside dans le fait que la self-attention est un concept spécifique à l'intelligence artificielle, notamment dans les modèles de langage comme les transformers. 
+
+L'attention en général est simplement la capacité d'orienter notre attention sur certaines informations ou objets par rapport à d'autres. C'est une compétence naturelle qui nous permet de focaliser notre attention sur ce qui est important pour accomplir une tâche.
+
+En revanche, la self-attention est un processus plus complexe qui consiste à analyser et à combiner des informations de plusieurs sources pour former une représentation unique de ces informations. Elle est utilisée dans les modèles de langage pour comprendre et interpréter des phrases complexes.
+
+Un exemple concret serait de penser à un modèle de langage comme BERT. Il utilise la self-attention pour comprendre comment chaque mot dans une phrase est lié à tous les autres mots. Cela permet à BERT de comprendre la signification",La self-attention applique l'attention entre les éléments d'une même séquence. À retenir : elle compare les tokens d'une même séquence.
+9,Pourquoi QLoRA consomme-t-il moins de mémoire qu'un fine-tuning complet ?,"QLoRA (Quantized LoRA) consomme moins de mémoire car il utilise des quantifications pour réduire la taille des modèles. En remplaçant les paramètres flottants par des entiers quantifiés, QLoRA réduit considérablement la taille du modèle sans perdre beaucoup d'information. Cela permet à QLoRA de s'exécuter sur des appareils avec peu de mémoire, comme les smartphones ou les appareils IoT. Par exemple, un modèle QLoRA peut contenir seulement 10% de la taille d'un modèle fini complet, ce qui le rend très pratique pour l'implémentation sur des plateformes limitées en mémoire. À retenir : QLoRA réduit la taille du modèle en utilisant des quantifications, ce qui permet de l'exécuter efficacement sur des appareils avec peu de mémoire.","QLoRA combine un modèle de base quantifié, souvent en 4 bits, avec des adaptateurs LoRA entraînables. À retenir : QLoRA réduit fortement la mémoire nécessaire au fine-tuning."
+10,Quelle est la différence entre quantifier un modèle et le fine-tuner ?,"La quantification d'un modèle et le fine-tuning sont deux processus différents dans l'apprentissage automatique, mais ils ont des objectifs similaires.
+
+**Quantification d'un modèle** :
+
+- C'est la mesure exacte du modèle pour obtenir des informations précises sur ses performances.
+- Elle nécessite une grande quantité de données pour obtenir des résultats précis.
+- Exemple : Calculer les paramètres exacts d'un réseau neuronal pour optimiser sa performance.
+
+**Fine-tuning d'un modèle** :
+
+- C'est l'ajustement du modèle pour qu'il puisse apprendre à reconnaître des caractéristiques spécifiques dans un nouveau contexte.
+- Il s'agit d'une étape supplémentaire après l'entraînement initial.
+- Exemple : Apprendre à identifier des visages dans une image avec un modèle préentraîné sur des images de personnes.
+
+En résumé, la quantification est plus rigoureuse et requiert plus de données, tandis que le fine-t","Un fine-tuner apprend des régularités dans un jeu de données ciblés, tandis que le quantification exprime des probabilités avec plus de precision numérique. À retenir : la quantification opère sur les poids, le fine-tuning sur les données."
+11,Pourquoi un faible training loss ne garantit-il pas une bonne généralisation ?,"Un faible training loss, c'est-à-dire un score d'erreur minimal lors du processus de formation, ne garantit pas nécessairement une bonne généralisation. Voici pourquoi :
+
+1. **Échantillon limité** : Le modèle a été entraîné sur un échantillon limité de données. Les données qui ont été utilisées pour former le modèle peuvent ne pas être représentatives de la réalité.
+
+2. **Surapprentissage** : Le modèle peut apprendre à minimiser l'erreur sur les données d'apprentissage mais ne s'adapter à la réalité extérieure.
+
+3. **Diversité des données** : Si les données sont trop similaires ou trop limitées, le modèle peut ne pas pouvoir généraliser correctement aux nouvelles situations.
+
+4. **Mauvaise sélection de paramètres** : Les hyperparamètres (comme la taille du réseau ou la régularisation) peuvent influencer la performance du modèle.
+
+5. **Non-conformité aux données de test** : La structure de",Le training loss sert à ajuster les poids pendant le développement. À retenir : il ne prouve pas encore la capacité au généralisation.
+12,Comment détecter un surapprentissage avec train et validation ?,"Détecter un surapprentissage avec train et validation nécessite une compréhension du principe de l'apprentissage supervisé. Voici comment procéder :
+
+1. **Principe de base** : L'apprentissage supervisé consiste à apprendre à partir d'un ensemble de données où les résultats attendus sont connus. Le modèle est entraîné pour s'adapter aux données de train.
+
+2. **Train (entraînement)** : Les données de train sont utilisées pour ajuster le modèle. Le modèle apprend à reconnaître les caractéristiques dans les données.
+
+3. **Validation** : Après l'entraînement, on utilise la validation pour évaluer le modèle. On compare les prédictions du modèle sur les données de validation avec les résultats attendus.
+
+4. **Surapprentissage** : C'est lorsque le modèle apprend trop bien à reconnaître les données de train, ce qui peut conduire à des performances excessives sur ces données.",Le surapprentissage apparaît lorsqu'un modèle s'adapte trop aux données d'entraînement et généralise moins bien à de nouvelles données. À retenir : il faut surveiller la validation pour contrôler la généralisation.
+13,Pourquoi faut-il garder le jeu de test indépendant ?,"Le jeu de test indépendant est crucial dans l'analyse des données car il permet de vérifier si les résultats observés sont dus à la nature du jeu de test lui-même ou à des facteurs externes. En d'autres termes, il sert à évaluer si les résultats sont significatifs ou si ils pourraient être attribués à des variables autres que celles étudiées.
+
+Par exemple, si vous effectuez une étude sur l'efficacité d'un nouveau traitement médical, vous pouvez utiliser un jeu de tests indépendants pour voir si les résultats obtenus sont réellement liés au traitement ou si ces résultats seraient similaires même si vous changez le jeu de tests. Cela aide à confirmer que les résultats sont pertinents et non attribuables à des facteurs externes comme la génération de l'étude ou la population étudiée.","Le jeu de test est un ensemble d'exemples utilisé pour l'évaluation, il ne doit pas être compris pendant l'entraînement. À retenir : il sert à mesurer la performance, pas à apprendre."
+14,Quelle différence existe-t-il entre pré-entraînement et instruction tuning ?,"La pré-entraînement et l'Instruction Tuning sont deux approches différentes pour améliorer les performances d'un modèle de langage.
+
+La pré-entraînement est le processus de formation initiale d'un modèle à partir d'une grande base de données de textes. Cela permet aux modèles de comprendre la structure générale du langage et de s'adapter à divers types de contextes. Par exemple, Google a utilisé le modèle BERT pour pré-entraîner un grand nombre de modèles de langage, ce qui a permis à ces modèles de comprendre la signification de phrases complexes et de contextes variés.
+
+L'Instruction Tuning, quant à lui, consiste à ajuster un modèle pré-entraîné pour une tâche spécifique. Cela signifie que nous donnons à ce modèle des instructions spécifiques sur comment il doit traiter les informations. Par exemple, si nous voulons que notre modèle soit capable de comprendre les instructions pour réaliser une tâ","Le pré-entraînement apprend des régularités générales à partir d'un grand corpus, tandis que l'instruction tuning adapte un modèle entraîné sur des couples instruction-réponse pour l'adapter à une tâche ou un domaine. À retenir : instruction tuning spécialise un modèle."
+15,Que représente concrètement un embedding ?,"Un embedding est un concept central dans l'Intelligence Artificielle, notamment dans les modèles de langage comme les Deep Learning. Il s'agit d'une transformation qui convertit des informations numériques (comme des vecteurs) en des représentations plus visibles ou compréhensibles.
+
+Imaginez que vous avez un tableau de données contenant des informations sur des personnes, comme leur âge, leur sexe, leur profession, etc. Ces informations sont souvent données sous forme de nombres, mais elles peuvent être difficiles à interpréter directement. Un embedding transforme ces nombres en des représentations plus intuitives, comme des couleurs ou des formes géométriques, ce qui facilite la compréhension et l'analyse.
+
+Par exemple, plutôt que de dire ""l'homme est 30 ans"", on pourrait dire ""l'homme est rouge"". Cela permet de visualiser et de manipuler les données de manière plus facilement compréhensible.
+
+À retenir : Un embedding est une transformation qui",Un embedding est un vecteur numérique représentant un token dans un espace continu. Il fournit au réseau une représentation exploitable du token. À retenir : l'embedding transforme un identifiant discret en vecteur.
+16,Pourquoi une grande fenêtre de contexte coûte-t-elle plus cher en calcul ?,"Une grande fenêtre de contexte coûte plus cher en calcul car elle nécessite plus de mémoire pour stocker les informations. Imaginez que chaque élément du contexte est comme un grain de sable dans une bouteille. Plus vous avez de fenêtres de contexte, plus vous avez de grains de sable. Cela signifie qu'il faut utiliser plus de place dans votre tête pour stocker toutes ces informations. C'est pourquoi cela coûte plus cher en calcul. À retenir : Plus de fenêtres de contexte, plus de place dans la mémoire.","La grande fenêtre permet de voir plus d'éléments de la mémoire, mais elle consomme plus de ressources car elle traite chaque position comme un élément indépendant. À retenir : elle accélère le traitement à coût élevé."
+17,Comment un modèle choisit-il le prochain token quand do_sample=False ?,"Un modèle de langage, comme ceux utilisés dans les systèmes d'intelligence artificielle, décide du prochain token à produire en fonction de plusieurs facteurs. Voici comment cela se passe généralement :
+
+1. **Contexte actuel** : Le modèle considère le contexte actuel de la conversation ou du texte qu'il génère.
+
+2. **Mécanisme de prédictions** : Il utilise un algorithme pour prédire probablement ce que le prochain token sera. Cela peut être basé sur des règles de grammaire, des connaissances encyclopédiques, ou des tendances de langue.
+
+3. **Prédiction probabiliste** : Le modèle est souvent entraîné sur des données où il a été appris à prédire les probabilités de chaque token suivant. Cela permet de choisir le token qui est le plus probable selon ces données.
+
+4. **Prédiction basée sur l'entropie** : L'entropie est une",Le do_sample paramètre gèle l'échantillonnage et met en œuvre la prédiction autoregressive. À retenir : chaque token est sélectionné indépendamment du reste de la distribution.
+18,Pourquoi peut-on obtenir des réponses différentes avec la même question quand do_sample=True ?,"La fonction `do_sample=True` dans certains modèles de langage comme ceux basés sur les transformers permet d'obtenir des réponses plus variées ou créatives. Cela signifie que le modèle ne choisit pas simplement la réponse la plus probable, mais peut aussi produire des alternatives possibles.
+
+Par exemple, si vous demandez à un modèle de parler à quelqu'un, il pourrait répondre ""Je peux parler à tout le monde"" plutôt que ""Je peux parler à toi"". Cela ajoute une dimension supplémentaire à la conversation, rendant la réponse plus intéressante et dynamique.
+
+À retenir : L'utilisation de `do_sample=True` dans les modèles de langage permet aux répondants de proposer des alternatives plus variées, ce qui peut rendre les interactions plus engageantes et créatives.",La do_sample permet de gérer aléatoirement les candidates pendant l'échantillonnage. À retenir : elle ne préserve pas la logique indépendante des exemples.
+19,Quelle est la principale limitation de LoRA par rapport à un fine-tuning complet ?,"La principale limitation de LoRA (Low-Rank Adaptation) par rapport à un fine-tuning complet est sa capacité à traiter des modèles plus grands. En effet, LoRA utilise une approximation mathématique pour réduire le coût de calcul lors du fine-tuning. Cependant, cela peut entraîner des erreurs dans les modèles finis, car il ne peut pas représenter toutes les nuances de l'information. 
+
+Par exemple, si vous voulez ajuster un modèle de 10 millions de paramètres, LoRA pourrait être limité à seulement 100 paramètres, ce qui peut ne pas être suffisant pour capturer toutes les caractéristiques importantes du modèle original.",LoRA gèle les principaux poids du modèle et ajoute de petites matrices entraînables de faible rang. À retenir : LoRA économise le mémoire pendant l'entraînement.
+20,Explique le chemin complet allant d'une phrase entrée par l'utilisateur jusqu'au prochain token généré.,"Le chemin complet pour générer un prochain token est comme suit :
+
+1. **Entrée utilisateur** : L'utilisateur entre une phrase ou un texte.
+2. **Analyse du modèle** : Le modèle analyse la phrase entrée.
+3. **Recherche de mots** : Il cherche les mots dans son vocabulaire.
+4. **Choix du mot** : Il choisit un mot à partir de ces options.
+5. **Prédiction du prochain token** : Le modèle prédit le prochain token à générer.
+6. **Génération du prochain token** : Le modèle génère ce token.
+7. **Validation du token** : Le modèle vérifie que le token est valide.
+8. **Ajout du token** : Le modèle ajoute le token à la phrase générée.
+9. **Reprise du processus** : Le modèle reprend le processus pour générer le prochain token.
+
+C'est un processus continu qui se répète jusqu'à ce que le modèle soit satisfait ou qu'il atteigne un",Le tokenizer transforme une phrase en liste de tokens puisque le Transformer conserve only the token IDs. À retenir : chaque phrase ne passe pas directement au réseau.

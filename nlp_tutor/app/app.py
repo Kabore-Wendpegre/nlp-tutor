@@ -17,10 +17,7 @@ from pathlib import Path
 import gradio as gr
 import torch
 
-from nlp_tutor.model import (
-    load_tokenizer,
-    load_finetuned_model,
-)
+
 
 from nlp_tutor.generation import generate_tutor
 
@@ -42,7 +39,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
 # Dossier dans lequel le notebook sauvegarde
 # l'adaptateur LoRA après le fine-tuning.
-ADAPTER_DIR = PROJECT_ROOT / "artifacts" / "lora_adapter"
+ADAPTER_DIR = PROJECT_ROOT / "lora_adapter"
 
 
 # ============================================================
