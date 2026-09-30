@@ -10,15 +10,13 @@ de poser directement des questions au modèle.
 
 ---
 
-## 🚀 Lancer l'application
+## 🚀 Lancer NLP Tutor
 
 ### Méthode recommandée : Google Colab avec GPU
 
-L'application utilise un modèle quantifié en 4 bits avec `bitsandbytes`.
-Un environnement avec GPU CUDA est donc recommandé.
+1. Activer un runtime GPU dans Google Colab.
 
-### 1. Cloner le dépôt
+2. Cloner le dépôt :
 
 ```bash
-git clone https://github.com/Kabore-Wendpegre/nlp-tutor.git
-cd nlp-tutordonc je mets just
+!git clone https://github.com/Kabore-Wendpegre/nlp-tutor.git
