@@ -74,7 +74,7 @@ Dans une première cellule Colab :
 ## 4. Se placer dans le dossier du projet
 
 ```python
-%cd /content/nlp-tutor/nlp_tutor
+%cd /content/nlp-tutor
 ```
 
 La structure est actuellement :
@@ -82,16 +82,18 @@ La structure est actuellement :
 ```text
 nlp-tutor/
 │
-└── nlp_tutor/
-    ├── app/
-    ├── data/
-    ├── lora_adapter/
-    ├── notebooks/
-    ├── results/
-    ├── src/
-    ├── pyproject.toml
-    ├── requirements.txt
-    └── README.md
+├── app/
+├── data/
+├── lora_adapter/
+├── notebooks/
+├── results/
+├── src/
+├── Presentation_NLP_Tutor.pdf
+├── Presentation_NLP_Tutor_.pptx
+├── Rapport_NLP_Tutor_style_RMarkdown (1).pdf
+├── pyproject.toml
+├── requirements.txt
+└── README.md
 ```
 
 ---
@@ -712,7 +714,7 @@ Sur un **Google Colab avec GPU**, les seules commandes nécessaires sont :
 ```
 
 ```python
-%cd /content/nlp-tutor/nlp_tutor
+%cd /content/nlp-tutor
 ```
 
 ```python
